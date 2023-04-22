@@ -22,6 +22,14 @@
 //
 Collision CheckCollision(Object &obj1, Object &obj2)
 {
+	if (obj1.enabled == false || obj2.enabled == false) {//проверка активности объектов
+		return { false, {0, 0} };
+	}
+
+	if (obj1.colider.enabled == false || obj2.colider.enabled == false) {//проверка активности колайдеров объекта
+		return { false, {0, 0} };
+	}
+
 	Vector2 d = { obj2.position, obj1.position };//вектор, вычисляющий разнциу между позициями объектов
 	Vector2 q = {//вектор, вычисляющий разность расстояния объектов и полусуммы их размерностей
 		abs(d.x) - (obj2.collider.width + obj1.collider.width) / 2,
