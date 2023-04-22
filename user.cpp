@@ -27,6 +27,12 @@ Collision CheckCollision(Object &obj1, Object &obj2)
 		abs(d.x) - (obj2.collider.width + obj1.collider.width) / 2,
 		abs(d.y) - (obj2.collider.height + obj1.collider.height) / 2
 	};
+
+	if (q.x <= 0 && q.y <= 0) {//если по каждой координате вектор неположителен, то объекты сталкиваются, иначе нет
+		return {true, q};
+	}
+	else {
+		return {false, {0, 0}};
 }
 
 // Задание SolveCollision.
