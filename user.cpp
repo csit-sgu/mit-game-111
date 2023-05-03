@@ -113,16 +113,14 @@ void FixCollisions(Scene &scene, float dt)
 //
 void ApplyGravity(Object &obj, float dt)
 {
-	{
 	if (obj.physics.enabled) {
 		if (obj.collider.of_type(ColliderType::DYNAMIC)) { //проверка у объекта на работу компонент физики (obj.physics.enabled) и коллайдер типа ColliderType::DYNAMIC.
 			Vector2 GRAVITY({ 0,-6.32 }); // вектор ускорения своб.падения (значение взято из Super Mario World "https://hypertextbook.com/facts/2007/mariogravity.shtml")
-			Vector2Add(obj.physics.speed, Vector2Add(obj.physics.acceleration, GRAVITY * dt * dt));// Измениние ускорения(acceleration) в компоненте obj.physics, прибавив к нему ускорение свободного падения на время в квадрате.
+			obj.physics.speed += (obj.physics.acceleration + GRAVITY * dt * dt);// Измениние ускорения(acceleration) в компоненте obj.physics, прибавив к нему ускорение свободного падения на время в квадрате.
 			if (obj.physics.speed.y > -200) obj.physics.speed.y = -200; // ограничение скорости при значении больше 200
-			Vector2Add(obj.position, obj.physics.speed * dt); // изменение позиции игрока, прибавляя к ней скорость, умноженную на время с прошлого кадра.
+			obj.position += obj.physics.speed * dt; // изменение позиции игрока, прибавляя к ней скорость, умноженную на время с прошлого кадра.
 		}
 	}
-}
 }
 
 // Задание MakeJump.
