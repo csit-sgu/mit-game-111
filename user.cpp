@@ -300,9 +300,9 @@ void ShootBullet(Context &ctx, Object &player, float dt)
 	Render bullet_sprite = Render(ctx, "Assets/bullet.png");
 	bullet.render = bullet_sprite;
 	Collider bullet_colide = Collider(bullet_sprite, { ColliderType::EVENT });
-	Bullet projectile = Bullet({ 5,0 }, 10);
+	Bullet projectile = Bullet({ 5, 0 }, 10);
 	if (player.player.direction == Direction::LEFT) {
-		Bullet projectile = Bullet({ -5,0 }, 10);
+		projectile.speed.x *= -1;
 	}
 	bullet.bullet = projectile;
 	Spawn(ctx, bullet);
