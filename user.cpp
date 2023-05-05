@@ -22,14 +22,15 @@
 //
 Collision CheckCollision(Object &obj1, Object &obj2)
 {
-	Vector2 d = { obj2.position, obj1.position }; //вектор, вычисляющий разницу между позициями объектов
+	Vector2 d = obj2.position - obj1.position; //вектор, вычисляющий разницу между позициями объектов
 	Vector2 q = { //вектор, вычисляющий разность расстояния объектов и полусуммы их размерностей
 		abs(d.x) - (obj2.collider.width + obj1.collider.width) / 2,
 		abs(d.y) - (obj2.collider.height + obj1.collider.height) / 2
 	};
 
 	//если по каждой координате вектор неположителен, а оба объекта и их коллайдеры активны, то объекты сталкиваются, иначе нет
-	if (q.x <= 0 && q.y <= 0 && obj1.enabled == true && obj2.enabled == true && obj1.colider.enabled == true && obj2.colider.enabled == true) {
+	if (q.x <= 0 && q.y <= 0 && obj1.enabled == true && obj2.enabled == true
+		&& obj1.collider.enabled == true && obj2.colilder.enabled == true) {
 		return {true, q};
 	}
 	else {
