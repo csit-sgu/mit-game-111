@@ -29,12 +29,12 @@ Collision CheckCollision(Object &obj1, Object &obj2)
 	};
 
 	//если по каждой координате вектор неположителен, а оба объекта и их коллайдеры активны, то объекты сталкиваются, иначе нет
-	if (q.x <= 0 && q.y <= 0 && obj1.enabled == true && obj2.enabled == true
-		&& obj1.collider.enabled == true && obj2.collider.enabled == true) {
+	if (q.x <= 0 && q.y <= 0) {
 		return {true, q};
 	}
 	else {
 		return {false, {0, 0}};
+	}
 }
 
 // Задание SolveCollision.
