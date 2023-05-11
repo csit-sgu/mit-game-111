@@ -297,7 +297,7 @@ void ShootBullet(Context &ctx, Object &player, float dt)
 {
 	Object bullet = Object();
 	bullet.position = player.position;
-	Render bullet_sprite = Render(ctx, "Assets/bullet.png");
+	Render bullet_sprite = Render(ctx, "Assets/bullet_Egora.png");
 	bullet.render = bullet_sprite;
 	Collider bullet_collider = Collider(bullet_sprite, { ColliderType::EVENT });
 	Bullet projectile = Bullet({ 7, 0 }, 10);
