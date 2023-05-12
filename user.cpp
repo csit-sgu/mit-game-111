@@ -113,12 +113,19 @@ void FixCollisions(Scene &scene, float dt)
 //
 void ApplyGravity(Object &obj, float dt)
 {
+	//проверка у объекта на работу компонент физики (obj.physics.enabled) и коллайдер типа ColliderType::DYNAMIC.
 	if (obj.physics.enabled) {
-		if (obj.collider.of_type(ColliderType::DYNAMIC)) { //проверка у объекта на работу компонент физики (obj.physics.enabled) и коллайдер типа ColliderType::DYNAMIC.
-			Vector2 GRAVITY({ 0,-6.32 }); // вектор ускорения своб.падения (значение взято из Super Mario World "https://hypertextbook.com/facts/2007/mariogravity.shtml")
-			obj.physics.speed += (obj.physics.acceleration + GRAVITY * dt * dt);// Измениние ускорения(acceleration) в компоненте obj.physics, прибавив к нему ускорение свободного падения на время в квадрате.
-			if (obj.physics.speed.y > -200) obj.physics.speed.y = -200; // ограничение скорости при значении больше 200
-			obj.position += obj.physics.speed * dt; // изменение позиции игрока, прибавляя к ней скорость, умноженную на время с прошлого кадра.
+		if (obj.collider.of_type(ColliderType::DYNAMIC)) { 
+			// вектор ускорения своб.падения (значение пока равно 1900).
+			Vector2 GRAVITY({ 0, -1900 }); 
+			// изменение ускорения(acceleration) в компоненте obj.physics, прибавив к нему ускорение свободного падения на время в квадрате.
+			obj.physics.acceleration += GRAVITY * dt * dt;
+			// изменение скорости(speed) в компоненте obj.physics, прибавив к нему ускорение.
+			obj.physics.speed += obj.physics.acceleration;
+			// ограничение скорости при значении больше 200 (если у нас такое большое ускорение свободного падения равно такому большому значению, будет ли сразу значение равно -200?)
+			if (obj.physics.speed.y < -200) obj.physics.speed.y = -200; 
+			// изменение позиции игрока, прибавляя к ней скорость, умноженную на время с прошлого кадра.
+			obj.position += obj.physics.speed * dt; 
 		}
 	}
 }
