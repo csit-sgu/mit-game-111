@@ -1,6 +1,7 @@
 #include "user.hpp"
 #include "internal.hpp"
 #include <raylib.h>
+#include <cmath>
 
 // Задание CheckCollision.
 //
@@ -30,12 +31,11 @@ Collision CheckCollision(Object &obj1, Object &obj2)
 		abs(d.y) - (obj2.collider.height + obj1.collider.height) / 2
 	};
 
-	//учитываем знак координат вектора для определения направления столкновения
-	if (d.x < 0) q.x = -q.x;
-	if (d.y < 0) q.y = -q.y;
-
 	//если по каждой координате вектор неположителен, то объекты сталкиваются, иначе нет
 	if (q.x <= 0 && q.y <= 0) {
+		//учитываем знак координат вектора d для определения направления столкновения
+		q.x = std::copysign(q.x, d.x);
+		q.y = std::copysign(q.y, d.y);
 		return {true, q};
 	}
 	else {
