@@ -114,7 +114,7 @@ void FixCollisions(Scene &scene, float dt)
 void ApplyGravity(Object &obj, float dt)
 {
 	const int max_falling_speed = -200;
-	const Vector2 GRAVITY({ 0, -1900 });
+	const Vector2 GRAVITY({ 0, -90 });
 	// проверка объекта на работу компонента физики и динамического коллайдера
 	if (obj.physics.enabled) {
 		if (obj.collider.of_type(ColliderType::DYNAMIC)) { 
