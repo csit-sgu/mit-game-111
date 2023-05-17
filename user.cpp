@@ -135,6 +135,21 @@ void FixCollisions(Scene &scene, float dt)
 //
 void ApplyGravity(Object &obj, float dt)
 {
+	const int max_falling_speed = -200;
+	const Vector2 GRAVITY({ 0, -90 });
+	// проверка объекта на работу компонента физики и динамического коллайдера
+	if (obj.physics.enabled) {
+		if (obj.collider.of_type(ColliderType::DYNAMIC)) { 
+			// изменение ускорения
+			obj.physics.acceleration += GRAVITY * dt * dt;
+			// изменение скорости(speed)
+			obj.physics.speed += obj.physics.acceleration;
+			// ограничение скорости 
+			if (obj.physics.speed.y < max_falling_speed) obj.physics.speed.y = max_falling_speed; 
+			// изменение позиции игрока
+			obj.position += obj.physics.speed * dt; 
+		}
+	}
 }
 
 // Задание MakeJump.
