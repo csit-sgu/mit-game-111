@@ -2,6 +2,8 @@
 #include "internal.hpp"
 #include <raylib.h>
 #include <cmath>
+#include <string>
+using namespace std;
 
 // Задание CheckCollision.
 //
@@ -423,7 +425,13 @@ void KillEnemies(Context &ctx)
 // Возможное решение может занимать примерно 6-8 строк.
 //
 void ApplyOnDeath(Context &ctx, Object &obj)
-{
+{	
+	string soundPath;
+    if (obj.player.enabled) soundPath = "Assets/Sounds/death.mp3";
+    else if (obj.enemy.enabled) soundPath = "Assets/Sounds/enemy_death.mp3";
+	else return;
+	Sound sound = LoadSound(soundPath);
+	PlaySound(sound);
 }
 
 // Задание ApplyOnSpawn.
