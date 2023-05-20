@@ -22,26 +22,27 @@
 // Ваше решение может сильно отличаться.
 //
 Collision CheckCollision(Object &obj1, Object &obj2)
-{	// вектор, вычисляющий разницу между позициями объектов
+{ // вектор, вычисляющий разницу между позициями объектов
 	Vector2 d = obj2.position - obj1.position;
 
 	// вектор, вычисляющий разность расстояния объектов и полусуммы
 	// их размерностей
 	Vector2 q = {
 		abs(d.x) - (obj2.collider.width + obj1.collider.width) / 2,
-		abs(d.y) - (obj2.collider.height + obj1.collider.height) / 2
-	};
+		abs(d.y) - (obj2.collider.height + obj1.collider.height) / 2};
 
 	// если по каждой координате вектор неположителен,
 	// то объекты сталкиваются, иначе нет
-	if (q.x <= 0 && q.y <= 0) {
+	if (q.x <= 0 && q.y <= 0)
+	{
 		// учитываем знак координат вектора d
 		// для определения направления столкновения
 		q.x = std::copysign(q.x, d.x);
 		q.y = std::copysign(q.y, d.y);
 		return {true, q};
 	}
-	else {
+	else
+	{
 		return {false, {0, 0}};
 	}
 }
@@ -136,18 +137,21 @@ void FixCollisions(Scene &scene, float dt)
 void ApplyGravity(Object &obj, float dt)
 {
 	const int max_falling_speed = -200;
-	const Vector2 GRAVITY({ 0, -90 });
+	const Vector2 GRAVITY({0, -90});
 	// проверка объекта на работу компонента физики и динамического коллайдера
-	if (obj.physics.enabled) {
-		if (obj.collider.of_type(ColliderType::DYNAMIC)) { 
+	if (obj.physics.enabled)
+	{
+		if (obj.collider.of_type(ColliderType::DYNAMIC))
+		{
 			// изменение ускорения
 			obj.physics.acceleration += GRAVITY * dt * dt;
 			// изменение скорости(speed)
 			obj.physics.speed += obj.physics.acceleration;
-			// ограничение скорости 
-			if (obj.physics.speed.y < max_falling_speed) obj.physics.speed.y = max_falling_speed; 
+			// ограничение скорости
+			if (obj.physics.speed.y < max_falling_speed)
+				obj.physics.speed.y = max_falling_speed;
 			// изменение позиции игрока
-			obj.position += obj.physics.speed * dt; 
+			obj.position += obj.physics.speed * dt;
 		}
 	}
 }
@@ -336,9 +340,10 @@ void ShootBullet(Context &ctx, Object &player, float dt)
 	bullet.position = player.position;
 	Render bullet_sprite = Render(ctx, "Assets/bullet_Egora.png");
 	bullet.render = bullet_sprite;
-	Collider bullet_collider = Collider(bullet_sprite, { ColliderType::EVENT });
-	Bullet projectile = Bullet({ 7, 0 }, 10);
-	if (player.player.direction == Direction::LEFT) {
+	Collider bullet_collider = Collider(bullet_sprite, {ColliderType::EVENT});
+	Bullet projectile = Bullet({7, 0}, 10);
+	if (player.player.direction == Direction::LEFT)
+	{
 		projectile.speed.x *= -1;
 	}
 	bullet.bullet = projectile;
@@ -543,6 +548,19 @@ void DrawMainScreen(Context &ctx)
 //
 void ConstructMenuScene(Context &ctx, Scene &game_scene)
 {
+	Object bg; // создаем задний фон 
+	string path_bg = "Assets/menu_background.png";
+	Vector2 size_bg = ctx.screen_size;
+	bg.render =  Render(path_bg, size_bg);
+	game_scene.push_back(bg);
+
+	// Создание кнопки для начала игры
+	Object play_button;
+	string path_button = "Assets/background.png";
+	float size_button = (ctx.screen_size.x * ctx.screen_size.y * 0.05) / (800 * 450);
+	play_button.render = Render(path_button, size_button); // размер кнопки составляет 5% от экрана 
+	play_button.position = Vector2{ctx.screen_size.x / 2, 300}; // задаем позицию 
+	game_scene.push_back(play_button);
 }
 
 // Задание DrawStatus.
