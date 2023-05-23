@@ -403,6 +403,7 @@ void KillEnemies(Context &ctx)
 				if (bullet.bullet.enabled) {
 					if (CheckCollision(obj, bullet)) {
 						Destroy(ctx, obj);
+						Destroy(ctx, bullet);
 					}
 				}
 			}
