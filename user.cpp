@@ -399,12 +399,12 @@ void KillEnemies(Context &ctx)
 {
 	for (auto& obj : ctx.current_scene) {
 		//проверка, является ли объект врагом
-		if (obj.enemy.enable) {
+		if (obj.enemy.enabled) {
 			for (auto& bullet : ctx.current_scene) {
 				//поиск пули
 				if (bullet.bullet.enabled) {
 					//проверка столкновения
-					if (CheckCollision(obj, bullet)) {
+					if (CheckCollision(obj, bullet).exists) {
 						//уничтожение врага и пули
 						Destroy(ctx, obj);
 						Destroy(ctx, bullet);
