@@ -397,6 +397,11 @@ void UpdateBullet(Context &ctx, Object &obj, float dt)
 //
 void KillEnemies(Context &ctx)
 {
+	for (auto& obj : ctx.current_scene) {
+		if (obj.enemy.enable) {
+			
+		}
+	}
 }
 
 // Задание ApplyOnDeath.
