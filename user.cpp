@@ -398,12 +398,17 @@ void UpdateBullet(Context &ctx, Object &obj, float dt)
 void KillEnemies(Context &ctx)
 {
 	for (auto& obj : ctx.current_scene) {
+		//проверка, является ли объект врагом
 		if (obj.enemy.enable) {
 			for (auto& bullet : ctx.current_scene) {
+				//поиск пули
 				if (bullet.bullet.enabled) {
+					//проверка столкновения
 					if (CheckCollision(obj, bullet)) {
+						//уничтожение врага и пули
 						Destroy(ctx, obj);
 						Destroy(ctx, bullet);
+						//звук при уничтожении врага
 						ApplyOnDeath(ctx, obj);
 					}
 				}
