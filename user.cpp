@@ -404,6 +404,7 @@ void KillEnemies(Context &ctx)
 					if (CheckCollision(obj, bullet)) {
 						Destroy(ctx, obj);
 						Destroy(ctx, bullet);
+						ApplyOnDeath(ctx, obj);
 					}
 				}
 			}
