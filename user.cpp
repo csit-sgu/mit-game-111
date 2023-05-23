@@ -399,7 +399,11 @@ void KillEnemies(Context &ctx)
 {
 	for (auto& obj : ctx.current_scene) {
 		if (obj.enemy.enable) {
-			
+			for (auto& bullet : ctx.current_scene) {
+				if (bullet.bullet.enabled) {
+					
+				}
+			}
 		}
 	}
 }
