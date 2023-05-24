@@ -516,10 +516,6 @@ void DrawFinishScreen(Context &ctx)
 //
 void DrawMainScreen(Context &ctx)
 {
-	// очищаем экран и устанавливаем фоновый цвет
-    BeginDrawing();
-    ClearBackground(BLACK);
-
     // рисуем заголовок в середине экрана
     const char* title = "KOMATO3";
     int titleSize = MeasureText(title, 40);
@@ -529,9 +525,6 @@ void DrawMainScreen(Context &ctx)
     const char* text = "Are you ready?";
     int textSize = MeasureText(text, 20);
     DrawText(text, ctx.screen_size.x / 2 - textSize / 2, ctx.screen_size.y / 4, 20, BLUE);
-
-    // заканчиваем рисование
-    EndDrawing();
 }
 
 // Задание ConstructMenuScene.
