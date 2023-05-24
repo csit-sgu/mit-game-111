@@ -172,7 +172,7 @@ bool CheckPlayerDeath(Object &player, Scene &scene)
 {
     for (auto& object : scene) {
         if (object.enemy.enabled) {
-            if (CheckCollision(player, object).exists) { // Проверка на столконовение
+            if (CheckCollision(player, object).exists) { 
                 return true;
             }
         }
