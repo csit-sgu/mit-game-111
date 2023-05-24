@@ -277,18 +277,15 @@ void EnemyAI(Object &enemy, Scene &scene, float dt)
 	// Вычислим перемещение
 	float move = speed * dt; 
 
-		// Изменим позицию врага в зависимости от положения игрока
+	// Изменим позицию врага в зависимости от положения игрока
 	if (dist > 0) {
 		// если игрок слева
-
 		enemy_pos.x -= move;
 	}
 	else {
 		// если игрок справа
-		
 		enemy_pos.x += move;
 	}
-	
 }
 
 // Задание PlayerControl.
