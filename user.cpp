@@ -289,8 +289,36 @@ void EnemyAI(Object &enemy, Scene &scene, float dt)
 // Возможное решение может занимать примерно 16-20 строк.
 // Ваше решение может сильно отличаться.
 //
-void PlayerControl(Context &ctx, Object &player, float dt)
+void PlayerControl(Context& ctx, Object& player, float dt)
 {
+	//добавил спрайт персонажа
+	Render player_sprite = Render(ctx, "Assets/player_Sergei.png");
+	player.render = player_sprite;
+	Collider player_collider = Collider(player_sprite, { ColliderType::DYNAMIC });
+	//если ввод не заблокирован
+	if (!ctx.input_blocked) {
+		Vector2 move = { 0, 0 };
+
+		//пробел= прыжок
+		if (IsKeyDown(KEY_SPACE)) {
+			MakeJump;
+		}
+		//кнопка j= выстрел 
+		if (IsKeyDown(KEY_J)) {
+			ShootBullet;
+		}
+		//кнопка A= идти влево
+		if (IsKeyDown(KEY_A)) {
+			move.x = -1;
+		}
+		//кнопка D= идти вправо
+		if (IsKeyDown(KEY_D)) {
+			move.x = 1;
+		}
+
+		//изменение положения игрока
+		player.position += Vector2Multiply(move, player.physics.speed) * dt;
+	}
 }
 
 // Задание ShootBullet.
