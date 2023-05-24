@@ -3,7 +3,6 @@
 #include <raylib.h>
 #include <cmath>
 #include <string>
-using namespace std;
 
 // Задание CheckCollision.
 //
@@ -426,11 +425,21 @@ void KillEnemies(Context &ctx)
 //
 void ApplyOnDeath(Context &ctx, Object &obj)
 {	
-	string soundPath;
-    if (obj.player.enabled) soundPath = "Assets/Sounds/death.mp3";
-    else if (obj.enemy.enabled) soundPath = "Assets/Sounds/enemy_death.mp3";
-	else return;
+	//переменная, принимающая в себя путь к звукам
+	std::string soundPath;
+	//проверка, игрок это или нет
+    if (obj.player.enabled) {
+		//если является игроком, то присваиваем soundPath нужный путь
+		soundPath = "Assets/Sounds/death.mp3";
+	}
+	//если не игрок, то проверка, является ли объект врагом
+    else if (obj.enemy.enabled) {
+		//если является врагом, то присваиваем soundPath нужный путь
+		soundPath = "Assets/Sounds/enemy_death.mp3";
+	}
+	//переменная sound принимает в себя звук из нужного пути
 	Sound sound = LoadSound(soundPath);
+	//функция PlaySound воспроизводит звук sound
 	PlaySound(sound);
 }
 
