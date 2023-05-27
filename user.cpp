@@ -450,8 +450,8 @@ void ApplyOnSpawn(Context &ctx, Object &obj)
 {
 	if (obj.bullet.enabled)
 	{
-		LoadSound("Assets/Sounds/shot.mp3");
-		PlaySound;
+		Sound soundShot = LoadSound(ctx, "Assets/Sounds/shot.mp3");
+		PlaySound(soundShot);
 	}
 }
 
