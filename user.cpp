@@ -259,7 +259,6 @@ bool CheckFinish(Object &player, Scene &scene)
 //
 void EnemyAI(Object &enemy, Scene &scene, float dt)
 {
-	// определяем объект игрока
 	Object* player = find_player(scene);  
 	
 	// Получим скорость движения врага
