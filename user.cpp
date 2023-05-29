@@ -465,6 +465,11 @@ void ApplyOnDeath(Context &ctx, Object &obj)
 //
 void ApplyOnSpawn(Context &ctx, Object &obj)
 {
+	if (obj.bullet.enabled)
+	{
+		Sound soundShot = LoadSound("Assets/Sounds/shot.mp3");
+		PlaySound(soundShot);
+	}
 }
 
 // Задание DrawDeathScreen.
