@@ -549,15 +549,6 @@ void ConstructMenuScene(Context &ctx, Scene &game_scene)
 	Render bg_render = Render(ctx, path_bg, size_bg);
 	bg.render = bg_render;
 	game_scene.push_back(bg);
-
-	// Создание кнопки для начала игры
-	Object play_button;
-	std::string path_button = "Assets/background.png";
-	float size_button = (ctx.screen_size.x * ctx.screen_size.y * 0.05) / (800 * 450); // размер кнопки составляет 5% от экрана 
-	Render playbutton_render = Render(ctx, path_button, size_button);
-	play_button.render = playbutton_render; 
-	play_button.position = Vector2{ctx.screen_size.x / 2, 300}; // задаем позицию 
-	game_scene.push_back(play_button);
 }
 
 // Задание DrawStatus.
