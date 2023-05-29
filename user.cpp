@@ -516,15 +516,10 @@ void DrawFinishScreen(Context &ctx)
 //
 void DrawMainScreen(Context &ctx)
 {
-    // рисуем заголовок в середине экрана
-    const char* title = "KOMATO3";
-    int titleSize = MeasureText(title, 40);
-    DrawText(title, ctx.screen_size.x / 2 - titleSize / 2, ctx.screen_size.y / 2, 40, BLUE);
-
-    // рисуем другой текст в центре экрана
-    const char* text = "Are you ready?";
-    int textSize = MeasureText(text, 20);
-    DrawText(text, ctx.screen_size.x / 2 - textSize / 2, ctx.screen_size.y / 4, 20, BLUE);
+	// рисуем заголовок в середине экрана
+	const char* title = "KOMATO3";
+	int titleSize = MeasureText(title, 72);
+	DrawText(title, ctx.screen_size.x / 2 - titleSize / 2, ctx.screen_size.y / 20, 72, BLUE);
 }
 
 // Задание ConstructMenuScene.
