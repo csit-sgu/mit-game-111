@@ -426,11 +426,11 @@ void KillEnemies(Context &ctx)
 void ApplyOnDeath(Context &ctx, Object &obj)
 {	
 	std::string soundPath;
-    if (obj.player.enabled) {
+	if (obj.player.enabled) {
 		//если является игроком, то присваиваем soundPath нужный путь
 		soundPath = "Assets/Sounds/death.mp3";
 	}
-    else if (obj.enemy.enabled) {
+	else if (obj.enemy.enabled) {
 		//если является врагом, то присваиваем soundPath нужный путь
 		soundPath = "Assets/Sounds/enemy_death.mp3";
 	}
