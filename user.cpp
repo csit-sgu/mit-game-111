@@ -607,6 +607,12 @@ void DrawMainScreen(Context &ctx)
 //
 void ConstructMenuScene(Context &ctx, Scene &game_scene)
 {
+	Object bg; // создаем задний фон 
+	std::string path_bg = "Assets/menu_background.png";
+	Vector2 size_bg = ctx.screen_size;
+	Render bg_render = Render(ctx, path_bg, size_bg);
+	bg.render = bg_render;
+	game_scene.push_back(bg);
 }
 
 // Задание DrawStatus.
