@@ -291,33 +291,28 @@ void EnemyAI(Object &enemy, Scene &scene, float dt)
 //
 void PlayerControl(Context& ctx, Object& player, float dt)
 {
-	//добавил спрайт персонажа
-	Render player_sprite = Render(ctx, "Assets/player_Sergei.png");
-	player.render = player_sprite;
-	Collider player_collider = Collider(player_sprite, { ColliderType::DYNAMIC });
 	//если ввод не заблокирован
 	if (!ctx.input_blocked) {
-		Vector2 move = { 0, 0 };
 
 		//пробел= прыжок
-		if (IsKeyDown(KEY_SPACE)) {
-			MakeJump;
-		}
+		if (IsKeyDown(KEY_SPACE))
+			MakeJump(player, dt);
+
 		//кнопка j= выстрел 
-		if (IsKeyDown(KEY_J)) {
-			ShootBullet;
-		}
+		if (IsKeyPressed(KEY_J))
+			ShootBullet(ctx, player, dt);
+
 		//кнопка A= идти влево
 		if (IsKeyDown(KEY_A)) {
-			move.x = -1;
-		}
-		//кнопка D= идти вправо
-		if (IsKeyDown(KEY_D)) {
-			move.x = 1;
+			player.position.x -= (player.player.speed * dt);
+			player.player.direction = Direction::LEFT;
 		}
 
-		//изменение положения игрока
-		player.position += Vector2Multiply(move, player.physics.speed) * dt;
+		//кнопка D= идти вправо
+		if (IsKeyDown(KEY_D)) {
+			player.position.x += (player.player.speed * dt);
+			player.player.direction = Direction::RIGHT;
+		}
 	}
 }
 
