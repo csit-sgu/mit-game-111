@@ -108,7 +108,7 @@ void FixCollisions(Scene &scene, float dt)
 {
     for (Object& obj1 : scene)
     {
-        if (obj1.collider.enabled && 
+        if (obj1.collider.enabled &&
             obj1.collider.of_type(ColliderType::DYNAMIC))
         {
             for (Object& obj2 : scene)
