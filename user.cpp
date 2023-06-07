@@ -568,6 +568,12 @@ void DrawDeathScreen(Context &ctx)
 //
 void DrawGameOverScreen(Context &ctx)
 {
+	const char* GameOverText = "you're died"; 
+	int GameOverTextWidth = MeasureText(GameOverText, 45); 
+	DrawRectangle(0, 0, ctx.screen_size.x, ctx.screen_size.y, BLACK); 
+	int posX = (ctx.screen_size.x - GameOverTextWidth) / 2; 
+	int posY = ctx.screen_size.y / 2;
+	DrawText(GameOverText, posX, posY, 45, RED);
 }
 
 // Задание DrawFinishScreen.
