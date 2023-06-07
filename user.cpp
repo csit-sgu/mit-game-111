@@ -193,7 +193,12 @@ float const camSpeed = 30.0f;
 void MoveCameraTowards(Context &ctx, Object &obj, float dt)
 {
     Vector2 camera_delta = obj.position - ctx.camera_pos;
-    float len = Vector2Length(camera_delta); 
+    float len = Vector2Length(camera_delta);
+    if (len != 0) {
+    float coeff = std::min(1.0f, camSpeed / len * dt);
+    camera_delta *= coeff;
+    ctx.camera_pos += camera_delta;
+    }
 }
 
 // Задание CheckPlayerDeath.
