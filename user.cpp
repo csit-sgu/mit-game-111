@@ -189,6 +189,7 @@ void MakeJump(Object &obj, float dt)
 // Возможное решение может занимать примерно 5 строк.
 // Ваше решение может сильно отличаться.
 //
+float const camSpeed = 30.0f; 
 void MoveCameraTowards(Context &ctx, Object &obj, float dt)
 {
 }
