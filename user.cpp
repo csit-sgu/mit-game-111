@@ -189,9 +189,11 @@ void MakeJump(Object &obj, float dt)
 // Возможное решение может занимать примерно 5 строк.
 // Ваше решение может сильно отличаться.
 //
-float const camSpeed = 30.0f; 
+float const camSpeed = 30.0f;
 void MoveCameraTowards(Context &ctx, Object &obj, float dt)
 {
+    Vector2 camera_delta = obj.position - ctx.camera_pos;
+    float len = Vector2Length(camera_delta); 
 }
 
 // Задание CheckPlayerDeath.
